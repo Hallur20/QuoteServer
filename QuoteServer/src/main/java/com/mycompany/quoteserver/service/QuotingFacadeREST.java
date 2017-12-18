@@ -63,13 +63,25 @@ public class QuotingFacadeREST {
         }
     }
 
-
-
-
     @GET
     @Path("get")
     @Produces({MediaType.APPLICATION_JSON})
     public String findAll() {
         return gson.toJson(f.getAll());
+    }
+
+    @PUT
+    @Path("password")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public String pw(String content) {
+        JsonObject body = new JsonParser().parse(content).getAsJsonObject();
+        String bool = "false";
+        if (body.has("password")) {
+            if (body.get("password").getAsString().equals("r@mmst3in1")) {
+                bool = "true";
+            }
+        }
+        return gson.toJson(bool);
     }
 }

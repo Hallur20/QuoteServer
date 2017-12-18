@@ -13,20 +13,38 @@
             <input type= "file" name="file" />
             <input type="submit"/>
         </Form>
+        <input id="pass" type="text"/>
+        <button id="passbtn">zz</button>
         <img id="here"/>
         <script>
-fetch("api/upload/url", { method: "get" })
-                .then(function (response) {
-                    return response.json();
-                })
-                .then(function (json) {
-                    document.getElementById("here").src = json;
-            document.getElementById("here").alt = json;
-                })
-                .catch(function (error) {
-                    alert(error);
+            fetch("api/upload/url", {method: "get"})
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (json) {
+                        document.getElementById("here").src = json;
+                        document.getElementById("here").alt = json;
+                    })
+                    .catch(function (error) {
+                        alert(error);
+                    });
+
+
+            document.getElementById("passbtn").onclick = function () {
+                var pass = {password: document.getElementById("pass").value};
+                console.log(JSON.stringify(pass));
+                fetch("api/quotes/password", {method: 'PUT',
+                    headers: {
+                        'Accept': 'application/json, text/plain, */*',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(pass)})
+                        .then(function (element) {
+                            return element.json();
+                        }).then(function (json) {
+                    alert(json);
                 });
-        
+            };
             document.getElementById("test").onsubmit = function (e) {
 
                 var input = document.querySelector('input[type="file"]');

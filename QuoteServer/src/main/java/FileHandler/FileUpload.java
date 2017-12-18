@@ -11,7 +11,7 @@ import java.util.List;
 public class FileUpload {
 
 
-    private final String pathToFile = "/opt/tomcat/webapps/QuoteServer-1.0-SNAPSHOT/images/";
+    private final String pathToFile = "/opt/tomcat/webapps/QuoteServer/images/";
     File folder = new File(pathToFile);
 
     public void saveFile(InputStream is, String fileName) throws IOException {
