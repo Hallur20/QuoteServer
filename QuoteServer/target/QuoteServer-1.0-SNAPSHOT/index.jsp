@@ -48,12 +48,19 @@
             document.getElementById("test").onsubmit = function (e) {
 
                 var input = document.querySelector('input[type="file"]');
+                var passWord = prompt("you need a password for this");
                 alert("/images/" + input.files[0].name);
                 var data = new FormData();
                 data.append('file', input.files[0]);
+                data.append('password', passWord);
                 fetch('api/upload/file', {
                     method: 'POST',
-                    body: data
+                    body: data,
+
+                }).then(function(data){
+                    return data.json();
+                }).then(function(json){
+                    alert(json);
                 });
                 e.preventDefault();
             };

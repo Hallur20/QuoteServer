@@ -53,17 +53,21 @@ public class UploadREST {
     @Produces(MediaType.APPLICATION_JSON)
     public String bla(@DefaultValue("")
             @FormDataParam("file") InputStream file,
-            @FormDataParam("file") FormDataContentDisposition fileDisposition) throws IOException {
+            @FormDataParam("file") FormDataContentDisposition fileDisposition,
+            @FormDataParam("password") String password) throws IOException {
         String fileName = fileDisposition.getFileName();
-        fileUpload.saveFile(file, fileName);
-        return gson.toJson("ok");
+        if (password.equals("123")) {
+            fileUpload.saveFile(file, fileName);
+            return gson.toJson("ok");
+        }
+        return gson.toJson("not ok");
     }
-    
+
     @GET
     @Path("url")
     @Produces(MediaType.APPLICATION_JSON)
-    public String getUrl(){
-        String url =  "images/" + fileUpload.getName();
+    public String getUrl() {
+        String url = "images/" + fileUpload.getName();
         return gson.toJson(url);
     }
 }
