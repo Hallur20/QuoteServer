@@ -48,7 +48,7 @@ public class FileUpload {
 
         String[] splitOnDot = fileName.split("\\.");
         for (String validFileType : validFileTypes) {
-            if (splitOnDot[splitOnDot.length - 1].equals(validFileType)) {
+            if (splitOnDot[splitOnDot.length - 1].toLowerCase().equals(validFileType)) {
                 return true;
             }
         }
