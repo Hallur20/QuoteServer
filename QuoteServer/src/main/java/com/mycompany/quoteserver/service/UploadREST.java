@@ -56,7 +56,7 @@ public class UploadREST {
             @FormDataParam("file") FormDataContentDisposition fileDisposition,
             @FormDataParam("password") String password) throws IOException {
         String fileName = fileDisposition.getFileName();
-        if (password.equals("123")) {
+        if (password.equals("r@mmst3in1")) {
             fileUpload.saveFile(file, fileName);
             return gson.toJson("ok");
         }

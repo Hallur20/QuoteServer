@@ -15,10 +15,10 @@ public class FileUpload {
     File folder = new File(pathToFile);
 
     public void saveFile(InputStream is, String fileName) throws IOException {
-        deleteFiles(folder);
         if (isFileTypeValid(fileName) == false) {
             throw new FileTypeNotValidException(": Accepted file types are jpg and png");
         }
+        deleteFiles(folder);
         String location = pathToFile + fileName;
         
         try (OutputStream os = new FileOutputStream(new File(location))) {
