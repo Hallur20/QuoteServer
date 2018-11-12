@@ -22,7 +22,7 @@ public class FileUpload {
         String location = pathToFile + fileName;
         
         try (OutputStream os = new FileOutputStream(new File(location))) {
-            byte[] buffer = new byte[256];
+            byte[] buffer = new byte[10240];
             int bytes = 0;
             while ((bytes = is.read(buffer)) != -1) {
                 os.write(buffer, 0, bytes);
